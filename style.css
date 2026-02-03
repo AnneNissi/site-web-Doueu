@@ -213,7 +213,7 @@
             border-radius: 20px;
             font-size: 0.9em;
             transition: transform 0.2s ease;
-            text-transform:none;
+            text-decoration:none;
         }
 
         .skill-tag:hover {
@@ -234,3 +234,4 @@
             }
 
         }
+
