@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .card {
+            
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    height: auto;
+
+
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img, .card video {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        a.back {
+            display: inline-block;
+            margin: 20px;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a.back:hover {
+            text-decoration: underline;
+        }
+
+        /* vue en grand ecran */
+        #viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #viewer img, #viewer video {
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mes Créations</h1>
+</header>
+
+<a href="index.html" class="back">← Accueil</a>
+
+<!-- ==== vue==== -->
+<div id="viewer">
+    <span id="closeBtn">&times;</span>
+    <img id="view-img" style="display:none;">
+    <video id="view-video" controls style="display:none;">
+        <source id="video-source" src="">
+    </video>
+</div>
+
+<div class="grid">
+
+    <div class="card">
+        <img src="JOYEUX.png" alt="Création 1">
+        <h3>Création 1</h3>
+        <p>Cette affiche a été réalisée pour Noël.</p>
+    </div>
+
+    <div class="card">
+        <img src="RENOV.jpeg" alt="Création 2">
+        <h3>Création 2</h3>
+        <p>Ma toute première belle affiche, conçue avec quelques difficultés.</p>
+    </div>
+
+    <div class="card">
+        <img src="WhatsApp Image 2026-01-01 at 00.31.06.jpeg" alt="Création 3">
+        <h3>Création 3</h3>
+        <p>Celle-ci a été faite avec l’IA et retouchée avec Canva.</p>
+    </div>
+
+    <div class="card">
+        <img src="aff salu.jpeg" alt="Création 4">
+        <h3>Création 4</h3>
+        <p>Affiche créée dans le cadre de la lutte contre l'insalubrité.</p>
+    </div>
+
+    <div class="card">
+        <video>
+            <source src="Seqvid.mp4" type="video/mp4">
+        </video>
+        <h3>Création 5</h3>
+        <p>Extrait d’un mini court-métrage réalisé avec L'IA sur la prévention des grossesses à risque.</p>
+    </div>
+
+</div>
+
+<!-- ==== ci dessous le code java inclus ==== -->
+<script>
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("view-img");
+const viewerVideo = document.getElementById("view-video");
+const videoSource = document.getElementById("video-source");
+const closeBtn = document.getElementById("closeBtn");
+
+// Cliquez sur image ou une video
+document.querySelectorAll(".card img, .card video").forEach(media => {
+    media.addEventListener("click", () => {
+        viewer.style.display = "flex";
+
+        if (media.tagName === "IMG") {
+            viewerImg.src = media.src;
+            viewerImg.style.display = "block";
+            viewerVideo.style.display = "none";
+        } else {
+            viewerVideo.style.display = "block";
+            viewerImg.style.display = "none";
+            videoSource.src = media.querySelector("source").src;
+            viewerVideo.load();
+        }
+    });
+});
+
+// fermer la vue
+closeBtn.addEventListener("click", () => viewer.style.display = "none");
+viewer.addEventListener("click", e => {
+    if (e.target === viewer) viewer.style.display = "none";
+});
+</script>
+<footer>
+            <p>© 2026 - MON UNIVERS| Créé avec en HTML, CSS & JavaScript par Mlle Doueu</p>
+            <p style="margin-top: 10px; opacity: 0.8;"></p>
+        </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Ma Page Personnelle</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><p id="typing"></p>
+
+<script>
+const words = ["Bienvenue dans l'univers Tech de Nissi!"];
+let i = 0;  
+let j = 0;  
+let isDeleting = false;
+
+function typeEffect() {
+    const element = document.getElementById("typing");
+    const current = words[i];
+
+    if (!isDeleting) {
+        element.textContent = current.slice(0, j++);
+    } else {
+        element.textContent = current.slice(0, j--);
+    }
+    if (j === current.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1000); // pause avant effacement
+        return;
+    }
+    if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % words.length;
+    }
+    setTimeout(typeEffect, isDeleting ? 50 : 80);
+}
+typeEffect();
+</script>
+ </h1>
+            
+            <p class="subtitle">Développeuse et creatrice de contenu IA</p>
+        </header>
+
+        <section id="about">
+            <h2>À propos de moi</h2>
+            <div class="about-content">
+                <div class="info-card">
+                    <h3>🎓 Mon parcours</h3>
+                    <p>
+                        Passionné par les technologies web et l'intelligence artificielles, j'ai des compétences en prompt engineering et des connaissance sur les bases de la programmation. Chaque jour est une nouvelle opportunité d'apprendre et de grandir dans ce domaine fascinant.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>👤 Qui suis-je ?</h3>
+                    <p>
+                        Je suis une personne curieuse et créative qui aime résoudre des problèmes. 
+                        et créer des choses utiles. J'apprécie le processus d'apprentissage auto-didacte mais j'aime demander quand je ne connais pas.
+                    </p>
+                </div>
+
+                <div class="skills-list">
+                      <a href="design.html" class="skill-tag">🎨 Design</a>
+                      <a href="lecture.html" class="skill-tag">📚 Lecture</a>
+</div>
+
+            </div>
+        </section>
+
+        <section id="passion">
+            <h2>Ma passion</h2>
+            <div class="passion-content">
+                <p class="passion-text">
+                    <strong>🚀 Le développement web</strong> Le développement web représente bien plus qu’un simple centre d’intérêt : c’est une passion qui me motive chaque jour. J’aime voir comment une idée, puis quelques lignes de code, peuvent devenir une interface fluide, intuitive et visuellement impactante.
+                </p>
+                <p class="passion-text">
+                    Ce qui me fascine le plus, c'est la <strong>créativité illimitée</strong> que 
+                    permet le web. On peut créer des expériences uniques, résoudre des problèmes réels 
+                    et toucher des millions de personnes à travers le monde. Chaque projet est un 
+                    nouveau défi, une nouvelle occasion d'apprendre et de s'améliorer.
+                </p>
+                <p class="passion-text">
+                    J'aime particulièrement <strong>le PHP</strong> et son 
+                    <strong>coté enigmatique</strong> Je commence à le découvrir et je cherche à le maîtriser davantage . La possibilité de créer des fonctionnalités dynamiques et de donner vie à un site grâce au PHP rend cet apprentissage à la fois stimulant et très motivant
+                </p>
+            </div>
+        </section>
+
+        <section id="interactive">
+            <div class="interactive-section">
+                <h2> Section Interactive</h2>
+                <p style="margin-bottom: 20px; font-size: 1.1em;">
+                    Cliquez sur le bouton ci-dessous pour découvrir un message spécial !
+                </p>
+                <button id="magicButton" onclick="showMessage()">
+                    Cliquez-moi !
+                </button>
+                <div id="message">Merci d'avoir visté ma page!</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 - MON UNIVERS| Créé avec en HTML, CSS & JavaScript par Mlle Doueu</p>
+            <p style="margin-top: 10px; opacity: 0.8;"></p>
+        </footer>
+    </div>
+
+    <script>
+        // Tableau de messages inspirants
+        const messages = [
+            "Vous êtes incroyable ! Continuez à apprendre !",
+            " Chaque ligne de code vous rapproche de vos objectifs !",
+            "Bravo d'avoir cliqué ! Vous êtes curieux, c'est parfait !",
+            "L'IA est passionnant !",
+        
+        ];
+
+        let messageIndex = 0;
+
+        // Fonction pour afficher un message aléatoire
+        function showMessage() {
+            const messageDiv = document.getElementById('message');
+            const button = document.getElementById('magicButton');
+            
+            // Animation du bouton
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Sélectionner un message aléatoire
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Afficher le message avec animation
+            messageDiv.classList.remove('show');
+            
+            setTimeout(() => {
+                messageDiv.innerHTML = `<span class="emoji"></span>${randomMessage}`;
+                messageDiv.classList.add('show');
+                
+                // Changer la couleur du fond du message aléatoirement
+                const colors = ['#e3f2fd', '#f3e5f5', '#e8f5e9', '#fff3e0', '#fce4ec'];
+                messageDiv.style.background = colors[Math.floor(Math.random() * colors.length)];
+            }, 300);
+        }
+
+        // Animation au scroll (optionnel)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Message de bienvenue dans la console
+        console.log('%c Bienvenue sur ma page personnelle !', 'color: #667eea; font-size: 20px; font-weight: bold;');
+        console.log('%c Merci de visiter mon site !', 'color: #764ba2; font-size: 16px;');
+    </script>
+</body>
+</html>
