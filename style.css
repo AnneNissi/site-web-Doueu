@@ -213,6 +213,7 @@
             border-radius: 20px;
             font-size: 0.9em;
             transition: transform 0.2s ease;
+            text-transform:none;
         }
 
         .skill-tag:hover {
@@ -231,4 +232,5 @@
             header {
                 padding: 40px 20px;
             }
+
         }
